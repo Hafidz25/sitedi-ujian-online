@@ -1,6 +1,11 @@
 <template>
     <Head>
         <title>Ujian Dengan Nomor Soal : {{ page }} - SITEDI</title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="/assets/images/favicon.ico"
+        />
     </Head>
     <div class="row mb-5 gy-3">
         <div class="col-md-7">

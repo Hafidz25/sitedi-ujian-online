@@ -2,6 +2,11 @@
 <template>
     <Head>
         <title>Dashboard Siswa - SITEDI</title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="/assets/images/favicon.ico"
+        />
     </Head>
     <div class="row">
         <div class="col-md-12">

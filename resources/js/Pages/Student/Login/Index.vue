@@ -1,6 +1,11 @@
 <template>
     <Head>
         <title>Login Siswa - SITEDI</title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="/assets/images/favicon.ico"
+        />
     </Head>
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">

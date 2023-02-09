@@ -1,6 +1,11 @@
 <template>
     <Head>
         <title>Tambah Soal Ujian - SITEDI</title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="/assets/images/favicon.ico"
+        />
     </Head>
     <div class="container-fluid mb-5 mt-5">
         <div class="row">
@@ -38,10 +43,9 @@
                                                     v-model="form.question"
                                                     :init="{
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -60,10 +64,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -82,10 +85,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -104,10 +106,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -126,10 +127,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -148,10 +148,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>

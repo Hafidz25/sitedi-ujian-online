@@ -1,9 +1,14 @@
 <template>
     <Head>
         <title>Login Admin - SITEDI</title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="/assets/images/favicon.ico"
+        />
     </Head>
     <div
-        class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500"
+        class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500 align-content-sm-center"
     >
         <div class="text-center text-md-center mb-4 mt-md-0">
             <h3>ADMIN</h3>

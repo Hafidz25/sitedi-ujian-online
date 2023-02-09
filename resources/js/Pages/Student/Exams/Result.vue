@@ -1,6 +1,11 @@
 <template>
     <Head>
         <title>Hasil Ujian - SITEDI</title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="/assets/images/favicon.ico"
+        />
     </Head>
     <div class="row justify-content-center mb-5">
         <div class="col-md-8">
