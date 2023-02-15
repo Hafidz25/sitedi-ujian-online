@@ -7,6 +7,16 @@
             href="/assets/images/favicon.ico"
         />
     </Head>
+    <div class="row">
+        <div class="col-md-12">
+            <Link
+                href="/student/dashboard"
+                class="btn btn-md btn-primary border-0 shadow mb-3"
+                type="button"
+                ><i class="fa fa-long-arrow-alt-left me-2"></i> Kembali</Link
+            >
+        </div>
+    </div>
     <div class="row justify-content-center mb-5">
         <div class="col-md-8">
             <div class="card border-0 shadow">

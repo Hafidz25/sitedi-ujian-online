@@ -43,10 +43,9 @@
                                                     v-model="form.question"
                                                     :init="{
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -65,10 +64,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -87,10 +85,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -109,10 +106,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -131,10 +127,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -153,10 +148,9 @@
                                                     :init="{
                                                         height: 130,
                                                         menubar: false,
-                                                        plugins:
-                                                            'lists link image emoticons',
+                                                        plugins: 'lists',
                                                         toolbar:
-                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                                            'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
                                                     }"
                                                 />
                                             </td>
@@ -274,8 +268,8 @@ export default {
                     onSuccess: () => {
                         //show success alert
                         Swal.fire({
-                            title: "Success!",
-                            text: "Soal Ujian Berhasil Dipdate!.",
+                            title: "Berhasil!",
+                            text: "Soal Ujian Berhasil Dipdate!",
                             icon: "success",
                             showConfirmButton: false,
                             timer: 2000,

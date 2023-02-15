@@ -89,12 +89,13 @@
                                         <td class="text-center">
                                             <Link
                                                 :href="`/admin/exams/${exam.id}`"
-                                                class="btn btn-sm btn-primary border-0 shadow me-2"
+                                                class="btn btn-sm btn-primary border-0 shadow me-2 fw-bold"
                                                 type="button"
                                                 ><i
                                                     class="fa fa-plus-circle"
-                                                ></i
-                                            ></Link>
+                                                ></i>
+                                                SOAL</Link
+                                            >
                                             <Link
                                                 :href="`/admin/exams/${exam.id}/edit`"
                                                 class="btn btn-sm btn-info border-0 shadow me-2"
@@ -179,16 +180,17 @@ export default {
                 text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
+                cancelButtonColor: "#3085d6",
+                confirmButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Tidak",
             }).then((result) => {
                 if (result.isConfirmed) {
                     Inertia.delete(`/admin/exams/${id}`);
 
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "Ujian Berhasil Dihapus!.",
+                        title: "Dihapus!",
+                        text: "Ujian Berhasil Dihapus!",
                         icon: "success",
                         timer: 2000,
                         showConfirmButton: false,

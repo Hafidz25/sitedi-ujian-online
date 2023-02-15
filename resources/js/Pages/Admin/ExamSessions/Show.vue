@@ -196,9 +196,10 @@ export default {
                 text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
+                cancelButtonColor: "#3085d6",
+                confirmButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Tidak",
             }).then((result) => {
                 if (result.isConfirmed) {
                     Inertia.delete(
@@ -206,8 +207,8 @@ export default {
                     );
 
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "Siswa Berhasil Dihapus!.",
+                        title: "Dihapus!",
+                        text: "Siswa Berhasil Dihapus!",
                         icon: "success",
                         timer: 2000,
                         showConfirmButton: false,

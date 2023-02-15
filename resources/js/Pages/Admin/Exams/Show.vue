@@ -236,9 +236,10 @@ export default {
                 text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
+                cancelButtonColor: "#3085d6",
+                confirmButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cacncelButtonText: "Tidak",
             }).then((result) => {
                 if (result.isConfirmed) {
                     Inertia.delete(

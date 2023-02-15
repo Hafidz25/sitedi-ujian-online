@@ -10,7 +10,7 @@
                     style="height: 70px"
                 />
             </Link>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0"></ul>
                 <form class="d-flex" v-if="$page.props.auth.student">
                     <Link

@@ -220,8 +220,8 @@ export default {
                     onSuccess: () => {
                         //show success alert
                         Swal.fire({
-                            title: "Success!",
-                            text: "Siswa Berhasil Disimpan.",
+                            title: "Berhasil!",
+                            text: "Siswa Berhasil Disimpan!",
                             icon: "success",
                             showConfirmButton: false,
                             timer: 2000,

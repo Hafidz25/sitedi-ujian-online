@@ -162,16 +162,17 @@ export default {
                 text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
+                cancelButtonColor: "#3085d6",
+                confirmButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Tidak",
             }).then((result) => {
                 if (result.isConfirmed) {
                     Inertia.delete(`/admin/lessons/${id}`);
 
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "Pelajaran Berhasil Dihapus!.",
+                        title: "Dihapus!",
+                        text: "Pelajaran Berhasil Dihapus!",
                         icon: "success",
                         timer: 2000,
                         showConfirmButton: false,

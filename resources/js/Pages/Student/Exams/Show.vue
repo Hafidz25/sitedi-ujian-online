@@ -388,7 +388,7 @@ export default {
 
             //show success alert
             Swal.fire({
-                title: "Success!",
+                title: "Berhasil!",
                 text: "Ujian Selesai!.",
                 icon: "success",
                 showConfirmButton: false,
