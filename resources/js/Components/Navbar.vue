@@ -41,6 +41,7 @@
                                 class="dropdown-item d-flex align-items-center"
                                 href="/logout"
                                 method="POST"
+                                onclick="return confirm('Anda yakin ingin logout ?')"
                                 as="button"
                             >
                                 <svg

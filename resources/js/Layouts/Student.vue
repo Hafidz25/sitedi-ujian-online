@@ -15,6 +15,7 @@
                 <form class="d-flex" v-if="$page.props.auth.student">
                     <Link
                         href="/logout"
+                        onclick="return confirm('Anda yakin ingin logout ?')"
                         method="POST"
                         class="btn btn-danger shadow"
                         as="button"
