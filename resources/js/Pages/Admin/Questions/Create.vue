@@ -251,31 +251,41 @@ export default {
         //method "submit"
         const submit = () => {
             //send data to server
-            Inertia.post(
-                `/admin/exams/${props.exam.id}/questions/store`,
-                {
-                    //data
-                    question: form.question,
-                    option_1: form.option_1,
-                    option_2: form.option_2,
-                    option_3: form.option_3,
-                    option_4: form.option_4,
-                    option_5: form.option_5,
-                    answer: form.answer,
-                },
-                {
-                    onSuccess: () => {
-                        //show success alert
-                        Swal.fire({
-                            title: "Berhasil!",
-                            text: "Soal Ujian Berhasil Disimpan!",
-                            icon: "success",
-                            showConfirmButton: false,
-                            timer: 2000,
-                        });
+            if (!form.option_5 && form.answer === "5") {
+                return Swal.fire({
+                    title: "Gagal!",
+                    text: "Kunci jawaban tidak tersedia",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            } else {
+                return Inertia.post(
+                    `/admin/exams/${props.exam.id}/questions/store`,
+                    {
+                        //data
+                        question: form.question,
+                        option_1: form.option_1,
+                        option_2: form.option_2,
+                        option_3: form.option_3,
+                        option_4: form.option_4,
+                        option_5: form.option_5,
+                        answer: form.answer,
                     },
-                }
-            );
+                    {
+                        onSuccess: () => {
+                            //show success alert
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Soal Ujian Berhasil Disimpan!",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 2000,
+                            });
+                        },
+                    }
+                );
+            }
         };
 
         //return

@@ -47,7 +47,7 @@ class ExamSessionController extends Controller
         //get exams
         $exams = Exam::when(request()->q, function ($exams) {
             $exams = $exams->where('title', 'like', '%' . request()->q . '%');
-        })->with('lesson', 'classroom', 'questions')->latest()->paginate(5);
+        })->with('lesson', 'classroom', 'questions')->latest()->paginate(99);
 
         //render with inertia
         return inertia('Admin/ExamSessions/Create', [
@@ -115,7 +115,9 @@ class ExamSessionController extends Controller
         $exam_session = ExamSession::findOrFail($id);
 
         //get exams
-        $exams = Exam::all();
+        $exams = Exam::when(request()->q, function ($exams) {
+            $exams = $exams->where('title', 'like', '%' . request()->q . '%');
+        })->with('lesson', 'classroom', 'questions')->latest()->paginate(99);
 
         //render with inertia
         return inertia('Admin/ExamSessions/Edit', [

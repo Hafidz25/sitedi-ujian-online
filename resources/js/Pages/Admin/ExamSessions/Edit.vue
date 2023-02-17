@@ -45,21 +45,23 @@
                                         <label>Ujian</label>
                                         <select
                                             class="form-select"
-                                            v-model="form.exam_id"
+                                            v-model="form.exam"
                                         >
                                             <option
-                                                v-for="(exam, index) in exams"
+                                                v-for="(
+                                                    exam, index
+                                                ) in exams.data"
                                                 :key="index"
-                                                :value="exam.id"
+                                                :value="exam"
                                             >
                                                 {{ exam.title }}
                                             </option>
                                         </select>
                                         <div
-                                            v-if="errors.exam_id"
+                                            v-if="errors.exam"
                                             class="alert alert-danger mt-2"
                                         >
-                                            {{ errors.exam_id }}
+                                            {{ errors.exam }}
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +167,7 @@ export default {
         //define form with reactive
         const form = reactive({
             title: props.exam_session.title,
-            exam_id: props.exam_session.exam_id,
+            exam: props.exam_session.exam_id,
             start_time: props.exam_session.start_time,
             end_time: props.exam_session.end_time,
         });
@@ -173,28 +175,60 @@ export default {
         //method "submit"
         const submit = () => {
             //send data to server
-            Inertia.put(
-                `/admin/exam_sessions/${props.exam_session.id}`,
-                {
-                    //data
-                    title: form.title,
-                    exam_id: form.exam_id,
-                    start_time: form.start_time,
-                    end_time: form.end_time,
-                },
-                {
-                    onSuccess: () => {
-                        //show success alert
-                        Swal.fire({
-                            title: "Berhasil!",
-                            text: "Sesi Ujian Berhasil Diupdate!",
-                            icon: "success",
-                            showConfirmButton: false,
-                            timer: 2000,
-                        });
+            if (form.exam.questions.length === 0) {
+                return Swal.fire({
+                    title: "Gagal!",
+                    text: "Ujian tidak memiliki soal",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            } else {
+                return Inertia.put(
+                    `/admin/exam_sessions/${props.exam_session.id}`,
+                    {
+                        //data
+                        title: form.title,
+                        exam_id: form.exam.id,
+                        start_time: form.start_time,
+                        end_time: form.end_time,
                     },
-                }
-            );
+                    {
+                        onSuccess: () => {
+                            //show success alert
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Sesi Ujian Berhasil Diupdate!",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 2000,
+                            });
+                        },
+                    }
+                );
+            }
+            // Inertia.put(
+            //     `/admin/exam_sessions/${props.exam_session.id}`,
+            //     {
+            //         //data
+            //         title: form.title,
+            //         exam_id: form.exam_id,
+            //         start_time: form.start_time,
+            //         end_time: form.end_time,
+            //     },
+            //     {
+            //         onSuccess: () => {
+            //             //show success alert
+            //             Swal.fire({
+            //                 title: "Berhasil!",
+            //                 text: "Sesi Ujian Berhasil Diupdate!",
+            //                 icon: "success",
+            //                 showConfirmButton: false,
+            //                 timer: 2000,
+            //             });
+            //         },
+            //     }
+            // );
         };
 
         //return
