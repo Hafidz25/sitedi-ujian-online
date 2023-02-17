@@ -178,7 +178,7 @@ export default {
                         title: "Dihapus!",
                         text: "Kelas Berhasil Dihapus!",
                         icon: "success",
-                        timer: 2000,
+                        timer: 1500,
                         showConfirmButton: false,
                     });
                 }

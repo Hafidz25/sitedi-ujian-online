@@ -45,21 +45,23 @@
                                         <label>Ujian</label>
                                         <select
                                             class="form-select"
-                                            v-model="form.exam_id"
+                                            v-model="form.exam"
                                         >
                                             <option
-                                                v-for="(exam, index) in exams"
+                                                v-for="(
+                                                    exam, index
+                                                ) in exams.data"
                                                 :key="index"
-                                                :value="exam.id"
+                                                :value="exam"
                                             >
                                                 {{ exam.title }}
                                             </option>
                                         </select>
                                         <div
-                                            v-if="errors.exam_id"
+                                            v-if="errors.exam"
                                             class="alert alert-danger mt-2"
                                         >
-                                            {{ errors.exam_id }}
+                                            {{ errors.exam }}
                                         </div>
                                     </div>
                                 </div>
@@ -159,12 +161,15 @@ export default {
         exams: Array,
     },
 
+    // created() {
+    //     console.log(exams);
+    // },
     //inisialisasi composition API
     setup() {
         //define form with reactive
         const form = reactive({
             title: "",
-            exam_id: "",
+            exam: "",
             start_time: "",
             end_time: "",
         });
@@ -172,28 +177,60 @@ export default {
         //method "submit"
         const submit = () => {
             //send data to server
-            Inertia.post(
-                "/admin/exam_sessions",
-                {
-                    //data
-                    title: form.title,
-                    exam_id: form.exam_id,
-                    start_time: form.start_time,
-                    end_time: form.end_time,
-                },
-                {
-                    onSuccess: () => {
-                        //show success alert
-                        Swal.fire({
-                            title: "Berhasil!",
-                            text: "Sesi Ujian Berhasil Disimpan!",
-                            icon: "success",
-                            showConfirmButton: false,
-                            timer: 2000,
-                        });
+            if (form.exam.questions.length === 0) {
+                return Swal.fire({
+                    title: "Gagal!",
+                    text: "Ujian tidak memiliki soal",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            } else {
+                return Inertia.post(
+                    "/admin/exam_sessions",
+                    {
+                        //data
+                        title: form.title,
+                        exam_id: form.exam.id,
+                        start_time: form.start_time,
+                        end_time: form.end_time,
                     },
-                }
-            );
+                    {
+                        onSuccess: () => {
+                            //show success alert
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Sesi Ujian Berhasil Disimpan!",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 2000,
+                            });
+                        },
+                    }
+                );
+            }
+            // Inertia.post(
+            //     "/admin/exam_sessions",
+            //     {
+            //         //data
+            //         title: form.title,
+            //         exam_id: form.exam_id.id,
+            //         start_time: form.start_time,
+            //         end_time: form.end_time,
+            //     },
+            //     {
+            //         onSuccess: () => {
+            //             //show success alert
+            //             Swal.fire({
+            //                 title: "Berhasil!",
+            //                 text: "Sesi Ujian Berhasil Disimpan!",
+            //                 icon: "success",
+            //                 showConfirmButton: false,
+            //                 timer: 2000,
+            //             });
+            //         },
+            //     }
+            // );
         };
 
         //return

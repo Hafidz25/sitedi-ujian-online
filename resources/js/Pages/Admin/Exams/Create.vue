@@ -98,17 +98,18 @@
                                     v-model="form.description"
                                     :init="{
                                         menubar: false,
-                                        plugins: 'lists link image emoticons',
+                                        plugins: 'lists',
                                         toolbar:
-                                            'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
+                                            'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist',
                                     }"
+                                    value=""
                                 />
-                                <div
+                                <!-- <div
                                     v-if="errors.description"
                                     class="alert alert-danger mt-2"
                                 >
                                     {{ errors.description }}
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="row">
@@ -271,7 +272,10 @@ export default {
                     lesson_id: form.lesson_id,
                     classroom_id: form.classroom_id,
                     duration: form.duration,
-                    description: form.description,
+                    description:
+                        form.description === ""
+                            ? "<p>Default Description</p>"
+                            : form.description,
                     random_question: form.random_question,
                     random_answer: form.random_answer,
                     show_answer: form.show_answer,

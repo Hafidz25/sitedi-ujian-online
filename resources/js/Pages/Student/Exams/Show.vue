@@ -392,7 +392,7 @@ export default {
                 text: "Ujian Selesai!.",
                 icon: "success",
                 showConfirmButton: false,
-                timer: 4000,
+                timer: 2000,
             });
         };
 

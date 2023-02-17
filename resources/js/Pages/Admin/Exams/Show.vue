@@ -153,14 +153,43 @@
                                                             '4',
                                                     }"
                                                 ></li>
-                                                <li
+                                                <div
+                                                    v-if="
+                                                        question.option_5 !==
+                                                        null
+                                                    "
+                                                >
+                                                    <li
+                                                        v-html="
+                                                            question.option_5
+                                                        "
+                                                        :class="{
+                                                            'text-success fw-bold':
+                                                                question.answer ==
+                                                                '5',
+                                                        }"
+                                                    ></li>
+                                                </div>
+                                                <div v-else>
+                                                    <!-- <li
+                                                        v-html="
+                                                            !question.option_5
+                                                        "
+                                                        :class="{
+                                                            'text-success fw-bold':
+                                                                question.answer ==
+                                                                '5',
+                                                        }"
+                                                    ></li> -->
+                                                </div>
+                                                <!-- <li
                                                     v-html="question.option_5"
                                                     :class="{
                                                         'text-success fw-bold':
                                                             question.answer ==
                                                             '5',
                                                     }"
-                                                ></li>
+                                                ></li> -->
                                             </ol>
                                         </td>
                                         <td class="text-center">
