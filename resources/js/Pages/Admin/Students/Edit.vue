@@ -111,12 +111,30 @@
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Password</label>
-                                        <input
-                                            type="password"
-                                            class="form-control"
-                                            placeholder="Masukkan Password"
-                                            v-model="form.password"
-                                        />
+                                        <div class="input-group">
+                                            <input
+                                                id="password"
+                                                :type="
+                                                    show ? 'text' : 'password'
+                                                "
+                                                class="form-control"
+                                                placeholder="Masukkan Password"
+                                                v-model="form.password"
+                                            />
+                                            <span
+                                                class="input-group-text"
+                                                id="basic-addon2"
+                                            >
+                                                <i
+                                                    :class="
+                                                        show
+                                                            ? 'fa fa-eye-slash'
+                                                            : 'fa fa-eye'
+                                                    "
+                                                    @click="showPw"
+                                                ></i>
+                                            </span>
+                                        </div>
                                         <div
                                             v-if="errors.password"
                                             class="alert alert-danger mt-2"
@@ -128,12 +146,34 @@
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Konfirmasi Password</label>
-                                        <input
-                                            type="password"
-                                            class="form-control"
-                                            placeholder="Masukkan Konfirmasi Password"
-                                            v-model="form.password_confirmation"
-                                        />
+                                        <div class="input-group">
+                                            <input
+                                                id="password"
+                                                :type="
+                                                    showConfirm
+                                                        ? 'text'
+                                                        : 'password'
+                                                "
+                                                class="form-control"
+                                                placeholder="Masukkan Konfirmasi Password"
+                                                v-model="
+                                                    form.password_confirmation
+                                                "
+                                            />
+                                            <span
+                                                class="input-group-text"
+                                                id="basic-addon2"
+                                            >
+                                                <i
+                                                    :class="
+                                                        showConfirm
+                                                            ? 'fa fa-eye-slash'
+                                                            : 'fa fa-eye'
+                                                    "
+                                                    @click="showPwConfirm"
+                                                ></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -236,6 +276,20 @@ export default {
             form,
             submit,
         };
+    },
+    data() {
+        return {
+            show: false,
+            showConfirm: false,
+        };
+    },
+    methods: {
+        showPw() {
+            this.show = !this.show;
+        },
+        showPwConfirm() {
+            this.showConfirm = !this.showConfirm;
+        },
     },
 };
 </script>

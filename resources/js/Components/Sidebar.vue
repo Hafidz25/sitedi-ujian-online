@@ -36,12 +36,14 @@
                 <li class="nav-item">
                     <span class="mt-2 d-flex justify-content-between">
                         <span>
-                            <span class="sidebar-icon">
-                                <img
-                                    src="/assets/images/logo.png"
-                                    style="height: 70px"
-                                />
-                            </span>
+                            <Link href="/admin/dashboard">
+                                <span class="sidebar-icon">
+                                    <img
+                                        src="/assets/images/logo.png"
+                                        style="height: 70px"
+                                    />
+                                </span>
+                            </Link>
                             <!-- <span class="sidebar-text fw-bold">SITEDI</span> -->
                         </span>
                         <!-- <span>
