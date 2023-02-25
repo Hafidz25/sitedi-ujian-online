@@ -17,7 +17,10 @@
             >
         </div>
     </div>
-    <div v-if="!exam_group.exam.description == '<p>Default Description</p>'">
+    <div
+        v-if="exam_group.exam.description !== '<p>Default Description</p>'"
+        class="row gy-3"
+    >
         <div class="col-md-6">
             <div class="card border-0 shadow">
                 <div class="card-body">
@@ -27,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <h5><i class="fa fa-list-ul"></i> Detail</h5>
