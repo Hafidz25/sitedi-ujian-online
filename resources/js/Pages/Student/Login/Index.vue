@@ -51,11 +51,40 @@
                                     <i class="fa fa-lock"></i>
                                 </span>
                                 <input
-                                    type="password"
+                                    id="password"
+                                    :type="show ? 'text' : 'password'"
                                     placeholder="Password"
                                     class="form-control"
                                     v-model="form.password"
                                 />
+                                <span
+                                    class="input-group-text"
+                                    id="basic-addon2"
+                                >
+                                    <i
+                                        :class="
+                                            show
+                                                ? 'fa fa-eye-slash'
+                                                : 'fa fa-eye'
+                                        "
+                                        @click="showPw"
+                                    ></i>
+                                </span>
+                                <!-- <div class="d-flex align-items-center ms-2">
+                                    <i
+                                        :class="
+                                            show
+                                                ? 'fa fa-eye-slash'
+                                                : 'fa fa-eye'
+                                        "
+                                        @click="showPw"
+                                    ></i>
+                                </div> -->
+                                <!-- <i
+                                    class="fa fa-eye-slash"
+                                    v-else
+                                    @click="showPw"
+                                ></i> -->
                             </div>
                             <div
                                 v-if="errors.password"
@@ -146,6 +175,16 @@ export default {
             form,
             submit,
         };
+    },
+    data() {
+        return {
+            show: false,
+        };
+    },
+    methods: {
+        showPw() {
+            this.show = !this.show;
+        },
     },
 };
 </script>
