@@ -76,7 +76,12 @@
                             type="button"
                             ><i class="fa fa-plus-circle"></i> Tambah</Link
                         >
-                        <!-- <Link :href="`/admin/exams/${exam.id}/questions/import`" class="btn btn-md btn-success border-0 shadow text-white" type="button"><i class="fa fa-file-excel"></i> Import</Link> -->
+                        <Link
+                            :href="`/admin/exams/${exam.id}/questions/import`"
+                            class="btn btn-md btn-success border-0 shadow text-white"
+                            type="button"
+                            ><i class="fa fa-file-excel"></i> Import</Link
+                        >
 
                         <div class="table-responsive mt-3">
                             <table

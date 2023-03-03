@@ -9,8 +9,9 @@ class Classroom extends Model
 {
     use HasFactory;
 
-    
+
     protected $fillable = [
         'title',
+        'value'
     ];
 }
