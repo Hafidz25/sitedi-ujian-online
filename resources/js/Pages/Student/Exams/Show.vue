@@ -37,6 +37,19 @@
                 <div class="card-body">
                     <div v-if="question_active !== null">
                         <div>
+                            <div v-if="question_active.question.img">
+                                <img
+                                    :src="
+                                        /storage/ + question_active.question.img
+                                    "
+                                    :style="{
+                                        width: '100%',
+                                        borderRadius: '6px',
+                                        marginBottom: '10px',
+                                    }"
+                                />
+                            </div>
+                            <div v-else></div>
                             <p v-html="question_active.question.question"></p>
                         </div>
 

@@ -67,6 +67,7 @@
                                 </h5>
                             </div>
                             <div class="col-md-3 col-12">
+<<<<<<< HEAD
                                 <a
                                     :href="`/admin/reports/export?exam_id=${form.exam_id}`"
                                     target="_blank"
@@ -74,6 +75,9 @@
                                     ><i class="fa fa-file-excel"></i> DOWNLOAD
                                     EXCEL</a
                                 >
+=======
+                                <a :href="`/admin/reports/export?exam_id=${form.exam_id}`" target="_blank" class="btn btn-success btn-md border-0 shadow w-100 text-white"><i class="fa fa-file-excel"></i> DOWNLOAD EXCEL</a>
+>>>>>>> 5abf81e238d342d958948a09d66dc031ae7cb6c9
                             </div>
                         </div>
                         <hr />

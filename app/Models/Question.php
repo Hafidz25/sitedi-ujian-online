@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Question extends Model
 {
@@ -11,6 +12,7 @@ class Question extends Model
 
     protected $fillable = [
         'exam_id',
+        'img',
         'question',
         'option_1',
         'option_2',
@@ -19,6 +21,13 @@ class Question extends Model
         'option_5',
         'answer',
     ];
+
+    // protected function img(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => url('uploads/' . $value),
+    //     );
+    // }
 
     public function exam()
     {

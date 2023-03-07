@@ -212,6 +212,7 @@ class ExamController extends Controller
     {
         //validate request
         $request->validate([
+            'img'               => 'nullable|mimes:jpg,jpeg,png|max:2048',
             'question'          => 'required',
             'option_1'          => 'required',
             'option_2'          => 'required',
@@ -221,9 +222,15 @@ class ExamController extends Controller
             'answer'            => 'required',
         ]);
 
+        $image_path = '';
+        if ($request->hasFile('img')) {
+            $image_path = $request->file('img')->store('img', 'public');
+        }
+
         //create question
         Question::create([
             'exam_id'           => $exam->id,
+            'img'               => $image_path,
             'question'          => $request->question,
             'option_1'          => $request->option_1,
             'option_2'          => $request->option_2,
@@ -232,6 +239,9 @@ class ExamController extends Controller
             'option_5'          => $request->option_5,
             'answer'            => $request->answer,
         ]);
+        sleep(1);
+
+
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);
@@ -258,6 +268,7 @@ class ExamController extends Controller
     {
         //validate request
         $request->validate([
+            'img'               => 'nullable|mimes:jpg,jpeg,png|max:2048',
             'question'          => 'required',
             'option_1'          => 'required',
             'option_2'          => 'required',
@@ -267,8 +278,14 @@ class ExamController extends Controller
             'answer'            => 'required',
         ]);
 
+        $image_path = '';
+        if ($request->hasFile('img')) {
+            $image_path = $request->file('img')->store('img', 'public');
+        }
+
         //update question
         $question->update([
+            'img'               => $image_path,
             'question'          => $request->question,
             'option_1'          => $request->option_1,
             'option_2'          => $request->option_2,
@@ -277,6 +294,7 @@ class ExamController extends Controller
             'option_5'          => $request->option_5,
             'answer'            => $request->answer,
         ]);
+        sleep(1);
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);

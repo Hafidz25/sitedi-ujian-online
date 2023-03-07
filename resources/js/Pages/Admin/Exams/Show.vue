@@ -120,6 +120,21 @@
                                             }}
                                         </td>
                                         <td>
+                                            <div v-if="question.img">
+                                                <img
+                                                    :src="
+                                                        /storage/ + question.img
+                                                    "
+                                                    :style="{
+                                                        width: '50%',
+                                                        borderRadius: '6px',
+                                                        marginBottom: '6px',
+                                                    }"
+                                                />
+                                            </div>
+                                            <div
+                                                v-else-if="!question.img"
+                                            ></div>
                                             <div
                                                 class="fw-bold"
                                                 v-html="question.question"

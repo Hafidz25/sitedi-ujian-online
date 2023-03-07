@@ -25,6 +25,66 @@
                         </h5>
                         <hr />
                         <form @submit.prevent="submit">
+                            <div class="mb-4">
+                                <label>File Gambar (optional)</label>
+                                <div class="d-flex align-items-center">
+                                    <input
+                                        type="file"
+                                        class="form-control"
+                                        ref="formImage"
+                                        @change="selectedFile"
+                                        @input="
+                                            form.img = $event.target.files[0]
+                                        "
+                                    />
+                                    <span>
+                                        <i
+                                            class="fas fa-times-circle"
+                                            :style="{
+                                                width: '24px',
+                                                marginLeft: '8px',
+                                                cursor: 'pointer',
+                                            }"
+                                            @click="removeSelect"
+                                        ></i>
+                                    </span>
+                                </div>
+                                <div
+                                    v-if="imageUrl === null && form.img !== ''"
+                                >
+                                    <img
+                                        :src="/storage/ + form.img"
+                                        :style="{
+                                            width: '70%',
+                                            marginTop: '16px',
+                                            borderRadius: '12px',
+                                        }"
+                                    />
+                                </div>
+                                <div v-else-if="imageUrl">
+                                    <img
+                                        :src="imageUrl"
+                                        :style="{
+                                            width: '70%',
+                                            marginTop: '16px',
+                                            borderRadius: '12px',
+                                        }"
+                                    />
+                                </div>
+
+                                <div
+                                    v-if="errors.file"
+                                    class="alert alert-danger mt-2"
+                                >
+                                    {{ errors.file }}
+                                </div>
+                                <div
+                                    v-if="errors[0]"
+                                    class="alert alert-danger mt-2"
+                                >
+                                    {{ errors[0] }}
+                                </div>
+                            </div>
                             <div class="table-responsive mb-4">
                                 <table
                                     class="table table-bordered table-centered table-nowrap mb-0 rounded"
@@ -240,6 +300,7 @@ export default {
     setup(props) {
         //define form with reactive
         const form = reactive({
+            img: props.question.img,
             question: props.question.question,
             option_1: props.question.option_1,
             option_2: props.question.option_2,
@@ -266,6 +327,7 @@ export default {
                     `/admin/exams/${props.exam.id}/questions/${props.question.id}/update`,
                     {
                         //data
+                        img: form.img,
                         question: form.question,
                         option_1: form.option_1,
                         option_2: form.option_2,
@@ -295,6 +357,28 @@ export default {
             form,
             submit,
         };
+    },
+    data() {
+        return {
+            imageUrl: null,
+        };
+    },
+    methods: {
+        selectedFile(event) {
+            const selectedFile = event.target.files[0];
+            if (selectedFile) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imageUrl = e.target.result;
+                };
+                reader.readAsDataURL(selectedFile);
+            }
+        },
+        removeSelect(props) {
+            this.imageUrl = null;
+            this.form.img = "";
+            this.$refs.formImage.value = "";
+        },
     },
 };
 </script>
