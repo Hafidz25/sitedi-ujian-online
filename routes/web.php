@@ -46,7 +46,11 @@ Route::prefix('admin')->group(function() {
         //custom route for edit question exam
         Route::get('/exams/{exam}/questions/{question}/edit', [\App\Http\Controllers\Admin\ExamController::class, 'editQuestion'])->name('admin.exams.editQuestion');
         //custom route for update question exam
-        Route::put('/exams/{exam}/questions/{question}/update', [\App\Http\Controllers\Admin\ExamController::class, 'updateQuestion'])->name('admin.exams.updateQuestion');
+        Route::post('/exams/{exam}/questions/update', [\App\Http\Controllers\Admin\ExamController::class, 'updateQuestion'])->name('admin.exams.updateQuestion');
+        Route::post('/exams/{exam}/questions/updatenoimage', [\App\Http\Controllers\Admin\ExamController::class, 'updateQuestionnoimage'])->name('admin.exams.updateQuestionnoimage');
+        // Route::put('/exams/{exam}/questions/{question}/update', [\App\Http\Controllers\Admin\ExamController::class, 'updateQuestion'])->name('admin.exams.updateQuestion');
+        // for delete image after update
+        Route::post('/exams/{exam}/questions/delImage', [\App\Http\Controllers\Admin\ExamController::class, 'deleteImage'])->name('admin.exams.deleteImage');
         //custom route for destroy question exam
         Route::delete('/exams/{exam}/questions/{question}/destroy', [\App\Http\Controllers\Admin\ExamController::class, 'destroyQuestion'])->name('admin.exams.destroyQuestion');
         //route student import

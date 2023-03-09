@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Imports\QuestionsImport;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExamController extends Controller
@@ -267,7 +269,7 @@ class ExamController extends Controller
     public function updateQuestion(Request $request, Exam $exam, Question $question)
     {
         //validate request
-        $request->validate([
+        $data = $request->validate([
             'img'               => 'nullable|mimes:jpg,jpeg,png|max:2048',
             'question'          => 'required',
             'option_1'          => 'required',
@@ -281,10 +283,14 @@ class ExamController extends Controller
         $image_path = '';
         if ($request->hasFile('img')) {
             $image_path = $request->file('img')->store('img', 'public');
+            File::delete(storage_path('app/public/' . $request->img2));
+            // $del_image = Question::find($image_path);
+            // File::delete($del_image);
         }
 
-        //update question
-        $question->update([
+        //create question
+        Question::create([
+            'exam_id'           => $exam->id,
             'img'               => $image_path,
             'question'          => $request->question,
             'option_1'          => $request->option_1,
@@ -294,11 +300,114 @@ class ExamController extends Controller
             'option_5'          => $request->option_5,
             'answer'            => $request->answer,
         ]);
+
+        // $question->update($data);
         sleep(1);
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);
     }
+
+    public function updateQuestionnoimage(Request $request, Exam $exam, Question $question)
+    {
+        //validate request
+        $data = $request->validate([
+            'img'               => 'nullable',
+            'question'          => 'required',
+            'option_1'          => 'required',
+            'option_2'          => 'required',
+            'option_3'          => 'required',
+            'option_4'          => 'required',
+            'option_5'          => '',
+            'answer'            => 'required',
+        ]);
+
+        // $image_path = '';
+        // if ($request->hasFile('img')) {
+        //     $image_path = $request->file('img')->store('img', 'public');
+        //     File::delete(storage_path('app/public/' . $request->img2));
+        //     // $del_image = Question::find($image_path);
+        //     // File::delete($del_image);
+        // }
+
+        //create question
+        Question::create([
+            'exam_id'           => $exam->id,
+            'img'               => $request->img,
+            'question'          => $request->question,
+            'option_1'          => $request->option_1,
+            'option_2'          => $request->option_2,
+            'option_3'          => $request->option_3,
+            'option_4'          => $request->option_4,
+            'option_5'          => $request->option_5,
+            'answer'            => $request->answer,
+        ]);
+
+        // $question->update($data);
+        sleep(1);
+
+        //redirect
+        return redirect()->route('admin.exams.show', $exam->id);
+    }
+
+    public function deleteImage(Request $request) {
+        $old_image = $request->img;
+        File::delete(storage_path('app/public/' . $old_image));
+        
+    }
+
+    // public function updateQuestion(Request $request, Exam $exam, Question $question)
+    // {
+    //     //validate request
+    //     $request->validate([
+    //         // 'img'               => 'nullable|mimes:jpg,jpeg,png|max:2048',
+    //         'question'          => 'required',
+    //         'option_1'          => 'required',
+    //         'option_2'          => 'required',
+    //         'option_3'          => 'required',
+    //         'option_4'          => 'required',
+    //         'option_5'          => '',
+    //         'answer'            => 'required',
+    //     ]);
+
+    //     $input = $request->all();
+    //     $file = $request->file('img');
+    //     if($file) {
+    //         $Question = Question::find($exam->id);
+    //             $this->delete_image('storage/', $Question->img);
+    //             $extension = $file->getClientOriginalExtension();
+    //             $img = 'img/' . time() . '.' . $extension;
+    //             $file->move('storage/', $img);
+
+    //             $Question = array(
+    //                 'img' => $img,
+    //                 'question' => $request->question,
+    //                 'option_1' => $request->option_1,
+    //                 'option_2' => $request->option_2,
+    //                 'option_3' => $request->option_3,
+    //                 'option_4' => $request->option_4,
+    //                 'option_5' => $request->option_5,
+    //                 'answer' => $request->answer
+    //             );
+    //         Question::findOrfail($exam->id)->update($Question);
+    //     }
+
+    //     $Question = Question::find($exam->id);
+    //     $Question->question = $request->get('question');
+    //     $Question->option_1 = $request->get('option_1');
+    //     $Question->option_2 = $request->get('option_2');
+    //     $Question->option_3 = $request->get('option_3');
+    //     $Question->option_4 = $request->get('option_4');
+    //     $Question->option_5 = $request->get('option_5');
+    //     $Question->answer = $request->get('answer');
+    //     if ($file)
+    //         $Question->img = $img;
+    //     $Question->update();
+    //     sleep(1);
+
+    //     //redirect
+    //     return redirect()->route('admin.exams.show', $exam->id);
+    // }
 
     public function destroyQuestion(Exam $exam, Question $question)
     {
@@ -333,5 +442,23 @@ class ExamController extends Controller
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);
+    }
+
+
+    // Delete Image from Storage
+    private function delete_image($dossier, $image)
+    {
+        $destination = $dossier . $image;
+        if (File::exists($destination)) {
+                if ($image != 'noimage.jpg') {
+                        // Delete Image            
+                        File::delete($destination);
+                        error_log('File::delete');
+                } else {
+                        error_log('noimage else');
+                }
+        } else {
+                error_log('File::existselse');
+        }
     }
 }

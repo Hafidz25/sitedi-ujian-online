@@ -32,8 +32,10 @@
                                         type="file"
                                         class="form-control"
                                         ref="formImage"
+                                        accept=".jpg, .jpeg, .png"
                                         @change="selectedFile"
                                         @input="
+                                            form.condition = 0,
                                             form.img = $event.target.files[0]
                                         "
                                     />
@@ -301,6 +303,8 @@ export default {
         //define form with reactive
         const form = reactive({
             img: props.question.img,
+            // def_img: props.question.img,
+            // imageValue: '',
             question: props.question.question,
             option_1: props.question.option_1,
             option_2: props.question.option_2,
@@ -308,12 +312,27 @@ export default {
             option_4: props.question.option_4,
             option_5: props.question.option_5,
             answer: props.question.answer,
+            condition: 1,
+            img2: props.question.img,
         });
 
         //method "submit"
         const submit = () => {
+            
+            // console.log(this.imageUrl);
+            // console.log(props.question.img);
+            // console.log(form.img);
             //send data to server
 
+            // if(form.condition == 1) {
+            //     return Swal.fire({
+            //         title: "Gagal!",
+            //         text: "Gambar belum dimasukkan!",
+            //         icon: "warning",
+            //         showConfirmButton: false,
+            //         timer: 2000,
+            //     });
+            // } else 
             if (!form.option_5 && form.answer === "5") {
                 return Swal.fire({
                     title: "Gagal!",
@@ -323,11 +342,46 @@ export default {
                     timer: 2000,
                 });
             } else {
-                Inertia.put(
-                    `/admin/exams/${props.exam.id}/questions/${props.question.id}/update`,
+                // Inertia.put(
+                //     `/admin/exams/${props.exam.id}/questions/${props.question.id}/update`,
+                //     {
+                //         //data
+                //         img: form.img,
+                //         question: form.question,
+                //         option_1: form.option_1,
+                //         option_2: form.option_2,
+                //         option_3: form.option_3,
+                //         option_4: form.option_4,
+                //         option_5: form.option_5,
+                //         answer: form.answer,
+                //     },
+                //     {
+                //         onSuccess: () => {
+                //             //show success alert
+                //             Swal.fire({
+                //                 title: "Berhasil!",
+                //                 text: "Soal Ujian Berhasil Dipdate!",
+                //                 icon: "success",
+                //                 showConfirmButton: false,
+                //                 timer: 2000,
+                //             });
+                //         },
+                //     }
+                // );
+
+                console.log(form.condition);
+                Inertia.post(
+                    `/admin/exams/${props.exam.id}/questions/delImage`,
+                    {
+                        // img: form.img2
+                    }
+                )
+                if(form.condition === 0){
+                    Inertia.post(
+                    `/admin/exams/${props.exam.id}/questions/update`,
                     {
                         //data
-                        img: form.img,
+                        img: form.img,  
                         question: form.question,
                         option_1: form.option_1,
                         option_2: form.option_2,
@@ -335,20 +389,59 @@ export default {
                         option_4: form.option_4,
                         option_5: form.option_5,
                         answer: form.answer,
+                        img2:form.img2
                     },
                     {
                         onSuccess: () => {
                             //show success alert
                             Swal.fire({
                                 title: "Berhasil!",
-                                text: "Soal Ujian Berhasil Dipdate!",
+                                text: "Soal Ujian Berhasil Disimpan!",
                                 icon: "success",
                                 showConfirmButton: false,
                                 timer: 2000,
                             });
+
+                            Inertia.delete(
+                                `/admin/exams/${props.exam.id}/questions/${props.question.id}/destroy`
+                            );
                         },
                     }
                 );
+                }else{
+                    Inertia.post(
+                    `/admin/exams/${props.exam.id}/questions/updatenoimage`,
+                    {
+                        //data
+                        img: form.img2,  
+                        question: form.question,
+                        option_1: form.option_1,
+                        option_2: form.option_2,
+                        option_3: form.option_3,
+                        option_4: form.option_4,
+                        option_5: form.option_5,
+                        answer: form.answer,
+                        // img2:form.img2
+                    },
+                    {
+                        onSuccess: () => {
+                            //show success alert
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Soal Ujian Berhasil Disimpan!",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 2000,
+                            });
+
+                            Inertia.delete(
+                                `/admin/exams/${props.exam.id}/questions/${props.question.id}/destroy`
+                            );
+                        },
+                    }
+                );
+                }
+                
             }
         };
 
@@ -360,7 +453,7 @@ export default {
     },
     data() {
         return {
-            imageUrl: null,
+            imageUrl: null
         };
     },
     methods: {
@@ -373,6 +466,7 @@ export default {
                 };
                 reader.readAsDataURL(selectedFile);
             }
+            this.condition = 0;
         },
         removeSelect(props) {
             this.imageUrl = null;
