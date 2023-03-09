@@ -303,8 +303,6 @@ export default {
         //define form with reactive
         const form = reactive({
             img: props.question.img,
-            // def_img: props.question.img,
-            // imageValue: '',
             question: props.question.question,
             option_1: props.question.option_1,
             option_2: props.question.option_2,
@@ -369,7 +367,7 @@ export default {
                 //     }
                 // );
 
-                console.log(form.condition);
+                // console.log(form.condition);
                 Inertia.post(
                     `/admin/exams/${props.exam.id}/questions/delImage`,
                     {
@@ -408,6 +406,39 @@ export default {
                         },
                     }
                 );
+                }else if(form.condition === 3) {
+                    Inertia.post(
+                        `/admin/exams/${props.exam.id}/questions/updatenoimage`,
+                        {
+                            //data
+                            img: '',  
+                            question: form.question,
+                            option_1: form.option_1,
+                            option_2: form.option_2,
+                            option_3: form.option_3,
+                            option_4: form.option_4,
+                            option_5: form.option_5,
+                            answer: form.answer,
+                            condition: 3,
+                            img2: form.img2,
+                        },
+                        {
+                            onSuccess: () => {
+                                //show success alert
+                                Swal.fire({
+                                    title: "Berhasil!",
+                                    text: "Soal Ujian Berhasil Disimpan!",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                });
+
+                                Inertia.delete(
+                                    `/admin/exams/${props.exam.id}/questions/${props.question.id}/destroy`
+                                );
+                            },
+                        }
+                    );
                 }else{
                     Inertia.post(
                     `/admin/exams/${props.exam.id}/questions/updatenoimage`,
@@ -421,6 +452,7 @@ export default {
                         option_4: form.option_4,
                         option_5: form.option_5,
                         answer: form.answer,
+                        condition: 1
                         // img2:form.img2
                     },
                     {
@@ -472,6 +504,7 @@ export default {
             this.imageUrl = null;
             this.form.img = "";
             this.$refs.formImage.value = "";
+            this.form.condition = 3; 
         },
     },
 };

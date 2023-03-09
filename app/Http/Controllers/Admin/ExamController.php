@@ -322,13 +322,11 @@ class ExamController extends Controller
             'answer'            => 'required',
         ]);
 
-        // $image_path = '';
-        // if ($request->hasFile('img')) {
-        //     $image_path = $request->file('img')->store('img', 'public');
-        //     File::delete(storage_path('app/public/' . $request->img2));
-        //     // $del_image = Question::find($image_path);
-        //     // File::delete($del_image);
-        // }
+        if ($request->condition == 3) {
+            File::delete(storage_path('app/public/' . $request->img2));
+            // $del_image = Question::find($image_path);
+            // File::delete($del_image);
+        }
 
         //create question
         Question::create([
