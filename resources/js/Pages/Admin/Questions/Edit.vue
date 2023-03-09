@@ -57,7 +57,7 @@
                                     <img
                                         :src="/storage/ + form.img"
                                         :style="{
-                                            width: '70%',
+                                            width: '30%',
                                             marginTop: '16px',
                                             borderRadius: '12px',
                                         }"
@@ -67,7 +67,7 @@
                                     <img
                                         :src="imageUrl"
                                         :style="{
-                                            width: '70%',
+                                            width: '30%',
                                             marginTop: '16px',
                                             borderRadius: '12px',
                                         }"
