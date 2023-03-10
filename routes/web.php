@@ -52,7 +52,8 @@ Route::prefix('admin')->group(function() {
         // for delete image after update
         Route::post('/exams/{exam}/questions/delImage', [\App\Http\Controllers\Admin\ExamController::class, 'deleteImage'])->name('admin.exams.deleteImage');
         //custom route for destroy question exam
-        Route::delete('/exams/{exam}/questions/{question}/destroy', [\App\Http\Controllers\Admin\ExamController::class, 'destroyQuestion'])->name('admin.exams.destroyQuestion');
+        // Route::delete('/exams/{exam}/questions/{question}/destroy', [\App\Http\Controllers\Admin\ExamController::class, 'destroyQuestion'])->name('admin.exams.destroyQuestion');
+        Route::post('/exams/{exam}/questions/{question}/destroy', [\App\Http\Controllers\Admin\ExamController::class, 'destroyQuestion'])->name('admin.exams.destroyQuestion');
         //route student import
         Route::get('/exams/{exam}/questions/import', [\App\Http\Controllers\Admin\ExamController::class, 'import'])->name('admin.exam.questionImport');
         //route student import

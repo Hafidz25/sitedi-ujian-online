@@ -407,10 +407,15 @@ class ExamController extends Controller
     //     return redirect()->route('admin.exams.show', $exam->id);
     // }
 
-    public function destroyQuestion(Exam $exam, Question $question)
+    public function destroyQuestion(Request $request, Exam $exam, Question $question)
     {
+        if($request->img !== null && $request->img !== '') {
+            // delete image from storage
+            File::delete(storage_path('app/public/' . $request->img));
+        }
         //delete question
         $question->delete();
+
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);

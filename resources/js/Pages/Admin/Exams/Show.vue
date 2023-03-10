@@ -223,7 +223,8 @@
                                                 @click.prevent="
                                                     destroy(
                                                         exam.id,
-                                                        question.id
+                                                        question.id,
+                                                        question.img
                                                     )
                                                 "
                                                 class="btn btn-sm btn-danger border-0"
@@ -274,12 +275,13 @@ export default {
     props: {
         errors: Object,
         exam: Object,
+        question: Object,
     },
 
     //inisialisasi composition API
-    setup() {
+    setup(props) {
         //define method destroy
-        const destroy = (exam_id, question_id) => {
+        const destroy = (exam_id, question_id, question_img) => {
             Swal.fire({
                 title: "Apakah Anda yakin?",
                 text: "Anda tidak akan dapat mengembalikan ini!",
@@ -291,8 +293,11 @@ export default {
                 cacncelButtonText: "Tidak",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Inertia.delete(
-                        `/admin/exams/${exam_id}/questions/${question_id}/destroy`
+                    Inertia.post(
+                        `/admin/exams/${exam_id}/questions/${question_id}/destroy`,
+                        {
+                            img: question_img
+                        }
                     );
 
                     Swal.fire({
