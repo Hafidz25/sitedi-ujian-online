@@ -400,7 +400,7 @@ export default {
                                 timer: 2000,
                             });
 
-                            Inertia.delete(
+                            Inertia.post(
                                 `/admin/exams/${props.exam.id}/questions/${props.question.id}/destroy`
                             );
                         },
@@ -411,7 +411,7 @@ export default {
                         `/admin/exams/${props.exam.id}/questions/updatenoimage`,
                         {
                             //data
-                            img: '',  
+                            img: null,  
                             question: form.question,
                             option_1: form.option_1,
                             option_2: form.option_2,
@@ -433,7 +433,7 @@ export default {
                                     timer: 2000,
                                 });
 
-                                Inertia.delete(
+                                Inertia.post(
                                     `/admin/exams/${props.exam.id}/questions/${props.question.id}/destroy`
                                 );
                             },
@@ -466,7 +466,7 @@ export default {
                                 timer: 2000,
                             });
 
-                            Inertia.delete(
+                            Inertia.post(
                                 `/admin/exams/${props.exam.id}/questions/${props.question.id}/destroy`
                             );
                         },
